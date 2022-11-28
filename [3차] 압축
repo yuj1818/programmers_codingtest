@@ -1,0 +1,41 @@
+from collections import deque
+def solution(msg):
+    answer = []
+    word = []
+    msg = deque(msg)
+
+    for i in range(65, 91):
+       word.append(chr(i))
+
+    while len(msg) > 0:
+        sig = 0
+        stack = deque()
+        stack.append(msg.popleft())
+        if len(msg) > 0:
+            while ''.join(stack) in word:
+                if len(msg) > 0:
+                    stack.append(msg.popleft())
+                else:
+                    sig = 1
+                    break
+            if sig == 0:
+                msg.appendleft(stack[-1])
+
+        if sig == 0:
+            if len(stack) == 1:
+                answer.append(word.index(''.join(stack))+1)
+            else:
+                word.append(''.join(stack))
+                stack.pop()
+                answer.append(word.index(''.join(stack))+1)
+        else:
+            answer.append(word.index(''.join(stack))+1)
+
+    return answer
+
+solution("ABABABABABABABAB")
+
+# msg	answer
+# KAKAO	[11, 1, 27, 15]
+# TOBEORNOTTOBEORTOBEORNOT	[20, 15, 2, 5, 15, 18, 14, 15, 20, 27, 29, 31, 36, 30, 32, 34]
+# ABABABABABABABAB	[1, 2, 27, 29, 28, 31, 30]

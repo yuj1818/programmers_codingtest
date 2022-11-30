@@ -46,3 +46,33 @@ solution("AAAAE")
 # "AAAE"	10
 # "I"	1563
 # "EIO"	1189
+
+# def solution(input):
+#     ch = ['A','E','I','O','U']
+#     word = ''
+#     depth = 0
+#     count = 0
+#     sig = 0
+
+#     def genDict(word, depth):
+#         nonlocal sig
+#         for c in ch:
+#             nonlocal count
+#             prev = word
+#             word += c
+#             depth = len(word)
+#             count += 1
+#             if word == input:
+#                 sig = 1
+#             if depth < len(ch):
+#                 if sig == 1:
+#                     break
+#                 genDict(word, depth)
+#             elif depth == len(ch) and word == prev + ch[-1]:
+#                 break
+#             if sig == 1:
+#                 break
+#             word = prev
+#         return count
+
+#     return genDict(word, depth)
